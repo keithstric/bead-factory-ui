@@ -7,10 +7,19 @@ import {PageNotFoundComponent} from '@layout/components/page-not-found/page-not-
  * @type {Routes}
  */
 export const appRoutes: Routes = [
-	{path: '', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)},
-	{path: 'auth', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)},
-	{path: 'features', loadChildren: () => import('./modules/features/features.module').then(m => m.FeaturesModule)},
-	{path: 'about', loadChildren: () => import('./modules/about/about.module').then(m => m.AboutModule)},
+	{
+		path: '',
+		children: [
+			{
+				path: '',
+				pathMatch: 'full',
+				redirectTo: 'projects'
+			},{
+				path: 'projects',
+				loadChildren: () => import('./modules/projects/projects.module').then(m => m.ProjectsModule)
+			}
+		]
+	},
 	{path: '**', component: PageNotFoundComponent}
 ];
 

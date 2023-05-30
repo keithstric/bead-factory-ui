@@ -8,7 +8,7 @@ FROM node:latest as builder
 # Create app directory
 WORKDIR /app
 
-# Copy project files into the docker image
+# Copy projects files into the docker image
 COPY . /app
 COPY ./package*.json /app/
 

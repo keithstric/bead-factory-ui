@@ -1,0 +1,17 @@
+FROM trion/ng-cli-karma:14.0.0
+
+ARG ENV
+
+ENV NODE_ENV ${ENV}
+
+WORKDIR /usr/src/app
+
+COPY ./bead-factory-ui/package*.json ./
+
+RUN npm install -g @angular/cli @angular-devkit/build-angular && npm install
+
+COPY ./bead-factory-ui/* ./
+
+EXPOSE 4200
+
+CMD ["npm","run","start"]

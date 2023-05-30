@@ -5,6 +5,7 @@ import * as fromRouter from '@ngrx/router-store';
 import * as fromUser from '@core/root-store/user';
 import * as fromLoading from '@core/root-store/loading';
 import * as fromForms from '@core/root-store/forms';
+import * as fromProjects from '@modules/projects/store'
 import {ActionReducerMap, createFeatureSelector, createSelector} from '@ngrx/store';
 
 /**

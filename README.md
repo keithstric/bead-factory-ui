@@ -12,7 +12,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 The folder structure of this project was inspired by [this video](https://www.youtube.com/watch?v=WA95EJGhbLc&t=1s).
 
-## Project Goals
+## RawProject Goals
 
 * Basic Angular implementation (no layout/styling packages like material or bootstrap)
 * Provide useful base features that can be used in any project (i.e. loading spinner, http requests, error handling, etc.)

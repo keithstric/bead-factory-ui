@@ -1,6 +1,7 @@
 import {Params} from '@angular/router';
 import {User} from '@core/models/user.model';
 import {IFormsState} from '@core/root-store/forms';
+import {ProjectsFeatureState} from '@modules/projects/store/models/projects-state.model';
 import {RouterReducerState} from '@ngrx/router-store';
 
 export interface iStateItem {
@@ -25,6 +26,7 @@ export interface AppState {
 	readonly loading: boolean | false;
 	readonly router: RouterReducerState<RouterStateUrl>;
 	readonly forms: IFormsState | null; // for demo purposes only
+	readonly projects?: ProjectsFeatureState;
 }
 
 

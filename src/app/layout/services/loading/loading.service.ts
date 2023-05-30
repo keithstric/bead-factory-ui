@@ -17,7 +17,7 @@ export class LoadingService {
 	) {}
 
 	/**
-	 * This method is only called from the {@link HttpRequestInterceptor}
+	 * This method is only called from the HttpRequestInterceptor
 	 * We can't just dispatch the action with the value of the loading argument, we
 	 * must ensure that there are no pending requests still loading in the loadingMap
 	 * @param loading {boolean}
