@@ -14,7 +14,7 @@ export enum BeadType {
 }
 
 export interface RawProject {
-	projectId: string;
+	id: string;
 	name: string;
 	type: ProjectType;
 	lengthInInches?: number;

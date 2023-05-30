@@ -3,7 +3,7 @@ import {iProjectsState} from '@modules/projects/store/models/projects-state.mode
 import {ProjectsActionTypes, ProjectsAction} from '@modules/projects/store/projects/projects.actions';
 import {createEntityAdapter, EntityAdapter} from '@ngrx/entity';
 
-export const selectProjectId = (a: RawProject) => a.projectId;
+export const selectProjectId = (a: RawProject) => a.id;
 
 export const projectsAdapter: EntityAdapter<RawProject> = createEntityAdapter<RawProject>({
 	selectId: selectProjectId
