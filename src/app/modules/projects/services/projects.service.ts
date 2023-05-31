@@ -17,14 +17,14 @@ export class ProjectsService {
 	}
 
 	getProject(projectId: string) {
-		return this._http.doRequest(`/api/project/${projectId}`, ApiMethod.GET);
+		return this._http.doRequest(`/api/projects/${projectId}`, ApiMethod.GET);
 	}
 
 	deleteProject(projectId: string) {
-		return this._http.doRequest(`/api/project/${projectId}`, ApiMethod.DELETE);
+		return this._http.doRequest(`/api/projects/${projectId}`, ApiMethod.DELETE);
 	}
 
 	updateProject(project: RawProject) {
-		return this._http.doRequest(`/api/project/${project.projectId}`, ApiMethod.PUT);
+		return this._http.doRequest(`/api/projects/${project.id}`, ApiMethod.PUT);
 	}
 }

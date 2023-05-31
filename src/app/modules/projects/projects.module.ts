@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {ProjectsRoutingModule} from '@modules/projects/projects-routing.module';
 import {ProjectsEffects} from '@modules/projects/store/projects/projects.effects';
 import {ProjectsFeatureReducersMap} from '@modules/projects/store/projects_feature.reducers';
-import {ProjectsService} from '@modules/services/projects.service';
+import {ProjectsService} from '@modules/projects/services/projects.service';
 import {EffectsModule} from '@ngrx/effects';
 import {StoreModule} from '@ngrx/store';
 import { ProjectsComponent } from './pages/projects/projects.component';

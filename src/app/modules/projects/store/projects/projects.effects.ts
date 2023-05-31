@@ -7,7 +7,7 @@ import {
 	GetProjectSuccessAction,
 	ProjectsActionTypes, UpdateProjectAction, UpdateProjectFailureAction, UpdateProjectSuccessAction
 } from '@modules/projects/store/projects/projects.actions';
-import {ProjectsService} from '@modules/services/projects.service';
+import {ProjectsService} from '@modules/projects/services/projects.service';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {of} from 'rxjs';
 import {catchError, map, mergeMap} from 'rxjs/operators';
