@@ -8,6 +8,7 @@ import {
 	FormsModule,
 	ReactiveFormsModule
 } from '@angular/forms';
+import {NgxBootstrapModule} from '@layout/modules/ngx-bootstrap/ngx-bootstrap.module';
 import {SnackBarRef} from '@shared/components/snack-bar/snack-bar.ref';
 import {UserAvatarComponent} from '@shared/components/user-avatar/user-avatar.component';
 import {FileDnDDirective} from '@shared/directives/file-dn-d/file-dn-d.directive';
@@ -21,6 +22,7 @@ import { CharacterCounterComponent } from './components/character-counter/charac
 import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
 import { ConnectStoreFormDirective } from '@shared/directives/connect-store-form/connect-store-form.directive';
 import { CheckboxStringValueDirective } from './directives/checkbox-string-value/checkbox-string-value.directive';
+import { ContextMenuComponent } from './components/context-menu/context-menu.component';
 
 const sharedComponents = [
 	CardComponent,
@@ -46,12 +48,14 @@ const sharedPipes = [
 		...sharedComponents,
 		...sharedDirectives,
 		...sharedPipes,
-  CheckboxStringValueDirective
+  CheckboxStringValueDirective,
+  ContextMenuComponent
 	],
 	imports: [
 		CommonModule,
 		FormsModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		NgxBootstrapModule
 	],
 	providers: [
 		SnackBarRef,
@@ -65,7 +69,9 @@ const sharedPipes = [
 		...sharedComponents,
 		...sharedPipes,
 		FormsModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		NgxBootstrapModule,
+		ContextMenuComponent
 	],
 	entryComponents: [SnackBarComponent]
 })

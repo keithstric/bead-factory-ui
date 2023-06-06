@@ -1,0 +1,12 @@
+<div
+	dropdown
+	class="btn-group context-menu-container"
+	#dropdown="bs-dropdown">
+	<ul *dropdownMenu class="dropdown-menu" role="menu">
+		<li
+			*ngFor="let item of dropdownItems"
+			(click)="itemClicked(item.label, item.value)">
+			{{item.label}}
+		</li>
+	</ul>
+</div>

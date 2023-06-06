@@ -13,6 +13,9 @@ export function formsReducer(state: IFormsState = formsInitialState, action: For
 			return {...state, [action.payload.path]: action.payload.value};
 		case FormActionTypes.PATCH_FORM:
 			return {...state, [action.payload.path]: action.payload.value};
+		case FormActionTypes.CLEAR_FORM:
+			delete state[action.payload];
+			return state;
 	}
 	return state;
 }

@@ -1,5 +1,10 @@
 import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {SetCurrentProjectAction} from '@modules/projects/store';
 import {
+	CreateProjectAction,
+	CreateProjectFailureAction,
+	CreateProjectSuccessAction,
 	DeleteProjectAction, DeleteProjectFailureAction, DeleteProjectSuccessAction,
 	GetProjectAction,
 	GetProjectFailureAction,
@@ -10,15 +15,29 @@ import {
 import {ProjectsService} from '@modules/projects/services/projects.service';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {of} from 'rxjs';
-import {catchError, map, mergeMap} from 'rxjs/operators';
+import {catchError, map, mergeMap, switchMap} from 'rxjs/operators';
 
 @Injectable()
 export class ProjectsEffects {
 
 	constructor(
 		private actions: Actions,
-		private _projectService: ProjectsService
+		private _projectService: ProjectsService,
+		private _router: Router
 	) {}
+
+	createProject = createEffect(() => this.actions
+		.pipe(
+			ofType<CreateProjectAction>(ProjectsActionTypes.CreateProject),
+			switchMap(action => this._projectService.createProject(action.payload)
+				.pipe(
+					switchMap(project => of(
+						new CreateProjectSuccessAction(project),
+						new SetCurrentProjectAction(project.id, this._router)
+					)),
+					catchError(err => of(new CreateProjectFailureAction(err)))
+				))
+		));
 
 	getProjects = createEffect(() => this.actions
 		.pipe(
@@ -52,10 +71,10 @@ export class ProjectsEffects {
 
 	deleteProject = createEffect(() => this.actions
 		.pipe(
-			ofType<DeleteProjectAction>(ProjectsActionTypes.GetProjects),
+			ofType<DeleteProjectAction>(ProjectsActionTypes.DeleteProject),
 			mergeMap(action => this._projectService.deleteProject(action.payload)
 				.pipe(
-					map(projects => new DeleteProjectSuccessAction(projects)),
+					map(projects => new DeleteProjectSuccessAction(projects.id)),
 					catchError(err => of(new DeleteProjectFailureAction(err)))
 				))
 		));

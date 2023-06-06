@@ -1,0 +1,43 @@
+@import 'src/scss/mixins';
+@import 'src/scss/variables';
+
+.projects-container {
+	margin: 1rem;
+	flex-wrap: wrap;
+
+	.project-card {
+		margin: 0 1rem 1rem 0;
+		width: 220px;
+		border-radius: 10px;
+		@include elevation(1);
+
+		&:hover {
+			cursor: pointer;
+			@include elevation(8);
+		}
+
+		.card-header {
+			font-size: 1.1rem;
+			font-weight: 500;
+
+			.dropdown-menu {
+
+				li {
+					padding: 0 5px;
+					border-radius: 5px;
+
+					&:hover {
+						cursor: pointer;
+						background-color: $primary;
+						color: white;
+					}
+				}
+			}
+		}
+
+		.card-footer {
+			font-size: 0.7rem;
+		}
+	}
+}
+

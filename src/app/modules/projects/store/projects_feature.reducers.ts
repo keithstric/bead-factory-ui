@@ -13,7 +13,7 @@ export const ProjectsFeatureReducersMap: ActionReducerMap<ProjectsFeatureState> 
 
 export function CurrentProjectReducer(state: string, action: ProjectsFeatureAction) {
 	switch (action.type) {
-		case ProjectsFeatureActionTypes.SELECT_ONE_PROJECT:
+		case ProjectsFeatureActionTypes.SetCurrentProject:
 			return action.payload;
 	}
 	return state;

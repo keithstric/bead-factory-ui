@@ -1,5 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {AbstractControl, FormArray, FormGroup} from '@angular/forms';
+import {ClearFormAction} from '@core/root-store/forms';
 import {Logger} from '@core/services/logger/logger';
 import {Store} from '@ngrx/store';
 import {
@@ -27,7 +28,7 @@ export interface FormControlsDefinition {
 	templateUrl: './dynamic-form.component.html',
 	styleUrls: ['./dynamic-form.component.scss']
 })
-export class DynamicFormComponent implements OnInit {
+export class DynamicFormComponent implements OnInit, OnDestroy {
 	@Input() formGroupValue?: FormGroupObject;
 	@Input() formGroupDefinition?: FormGroupDefinition;
 	@Input() formStatePath: string = 'demo';
@@ -50,6 +51,10 @@ export class DynamicFormComponent implements OnInit {
 		}
 		this.formGroupInitialized.emit(this.formGroup);
 		this.renderedControls = this._getFormDefinitions(this.formGroup);
+	}
+
+	ngOnDestroy() {
+		this.store.dispatch(new ClearFormAction(this.formStatePath));
 	}
 
 	private _buildFormFromValue() {
@@ -88,13 +93,16 @@ export class DynamicFormComponent implements OnInit {
 
 	private _getFieldOptions(control: AbstractControl): SelectOptions[] {
 		const fieldName = FormHelperService.getControlName(control);
-		const options = this.formGroupDefinition?.formGroupConfig[fieldName]?.options.map((option) => {
-			const selectOption = option.split('|');
-			if (selectOption.length === 2) {
-				return {value: selectOption[0], label: selectOption[1]};
-			}
-			return {value: selectOption[0], label: selectOption[0]};
-		});
+		let options = [];
+		if (this.formGroupDefinition?.formGroupConfig[fieldName]?.options) {
+			options = this.formGroupDefinition?.formGroupConfig[fieldName]?.options.map((option) => {
+				const selectOption = option.split('|');
+				if (selectOption.length === 2) {
+					return {value: selectOption[0], label: selectOption[1]};
+				}
+				return {value: selectOption[0], label: selectOption[0]};
+			});
+		}
 		return options || [];
 	}
 

@@ -1,1 +1,19 @@
-<p>projects works! Yay</p>
+<div class="projects-container d-flex">
+	<app-card *ngFor="let proj of projects" [withBorder]="true" class="project-card" (click)="openProject(proj)">
+		<div header class="card-header d-flex flex-row align-items-center">
+			<span>{{proj.name}}</span>
+			<span class="spacer"></span>
+			<div class="project-card-menu btn-group" dropdown>
+				<button class="btn" (click)="$event.stopPropagation()" dropdownToggle>
+					<i class="fa-solid fa-ellipsis-vertical"></i>
+				</button>
+				<ul class="dropdown-menu" *dropdownMenu>
+					<li role="menuitem" (click)="deleteProject($event, proj)">Delete Project</li>
+					<li role="menuitem" (click)="duplicateProject($event, proj)">Duplicate Project</li>
+				</ul>
+			</div>
+		</div>
+		<div content class="card-content">{{proj.description}}</div>
+		<div footer class="card-footer">{{proj.modifiedAtTimestamp | date: 'MM/dd/yyyy'}}</div>
+	</app-card>
+</div>

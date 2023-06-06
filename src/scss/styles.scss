@@ -1,12 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+
 @import 'variables';
 
 /* Any UI framework imports go here */
+@import '~bootstrap/scss/bootstrap'; // imports all of bootstrap
 
+//@import '~ngx-bootstrap/datepicker/bs-datepicker.scss';
 @import 'mixins';
 
 /* misc/app-global should be last in order to override any other styles */
-@import 'misc/flexbox';
+// @import 'misc/flexbox';
 @import 'misc/app-global';
 
 body {

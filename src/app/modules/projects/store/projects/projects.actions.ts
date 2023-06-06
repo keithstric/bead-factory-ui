@@ -2,6 +2,9 @@ import {RawProject} from '@modules/projects/interfaces/projects.interface';
 import {Action} from '@ngrx/store';
 
 export enum ProjectsActionTypes {
+	CreateProject = '[Projects] Create Project',
+	CreateProjectSuccess = '[Projects] Create Project Success',
+	CreateProjectFailure = '[Projects] Create Project Failure',
 	GetProjects = '[Projects] Get Projects',
 	GetProjectsSuccess = '[Projects] Get Projects Success',
 	GetProjectsFailure = '[Projects] Get Projects Failure',
@@ -13,7 +16,22 @@ export enum ProjectsActionTypes {
 	UpdateProjectFailure = '[Projects] Update Project Failure',
 	DeleteProject = '[Projects] Delete Project',
 	DeleteProjectSuccess = '[Projects] Delete Project Success',
-	DeleteProjectFailure = '[Projects] Delete Project Failure',
+	DeleteProjectFailure = '[Projects] Delete Project Failure'
+}
+
+export class CreateProjectAction implements Action {
+	readonly type = ProjectsActionTypes.CreateProject;
+	constructor(public payload: RawProject) {}
+}
+
+export class CreateProjectSuccessAction implements Action {
+	readonly type = ProjectsActionTypes.CreateProjectSuccess;
+	constructor(public payload: RawProject) {}
+}
+
+export class CreateProjectFailureAction implements Action {
+	readonly type = ProjectsActionTypes.CreateProjectFailure;
+	constructor(public payload: Error) {}
 }
 
 export class GetProjectsAction implements Action {
@@ -76,7 +94,10 @@ export class DeleteProjectFailureAction implements Action {
 	constructor(public payload: Error) {}
 }
 
-export type ProjectsAction = GetProjectsAction
+export type ProjectsAction = CreateProjectAction
+	| CreateProjectSuccessAction
+	| CreateProjectFailureAction
+	| GetProjectsAction
 	| GetProjectsSuccessAction
 	| GetProjectsFailureAction
 	| GetProjectAction

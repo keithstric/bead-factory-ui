@@ -18,7 +18,7 @@
 <!-- #formCtrlTemp - Template for individual form controls (FormControl) -->
 <ng-template #formCtrlTemp let-ctrlConfig>
 	<div class="form-field" [ngSwitch]="ctrlConfig.type">
-		<label *ngIf="ctrlConfig.type !== 'checkbox'">{{ctrlConfig.label | titlecase}}</label>
+		<label *ngIf="ctrlConfig.type !== 'checkbox'" class="form-label">{{ctrlConfig.label | titlecase}}</label>
 		<input *ngSwitchCase="'text'" type="text" class="form-control text" [formControl]="ctrlConfig.ctrl" />
 		<input *ngSwitchCase="'number'" type="number" class="form-control number" [formControl]="ctrlConfig.ctrl" />
 		<input *ngSwitchCase="'email'" type="email" class="form-control email" [formControl]="ctrlConfig.ctrl" />
@@ -31,7 +31,7 @@
 			<label class="form-check-label" [for]="ctrlConfig.fieldName + '-checkbox'">{{ctrlConfig.label | titlecase}}</label>
 		</div>
 		<textarea *ngSwitchCase="'textarea'" class="form-control textarea" [formControl]="ctrlConfig.ctrl"></textarea>
-		<select *ngSwitchCase="'select'" class="form-control select" [formControl]="ctrlConfig.ctrl">
+		<select *ngSwitchCase="'select'" class="form-select select" [formControl]="ctrlConfig.ctrl">
 			<option
 				*ngFor="let option of ctrlConfig.options"
 				[value]="option.value">

@@ -1,12 +1,17 @@
+import {Router} from '@angular/router';
 import {Action} from '@ngrx/store';
 
 export enum ProjectsFeatureActionTypes {
-	SELECT_ONE_PROJECT = 	'[Projects Feature] Select One Project'
+	SetCurrentProject = 	'[Projects Feature] Set Current Project'
 }
 
-export class SelectOneProjectAction implements Action {
-	readonly type = ProjectsFeatureActionTypes.SELECT_ONE_PROJECT;
-	constructor(public payload: string) {}
+export class SetCurrentProjectAction implements Action {
+	readonly type = ProjectsFeatureActionTypes.SetCurrentProject;
+	constructor(public payload: string, private router: Router) {
+		if (payload) {
+			router.navigateByUrl(`/projects/${payload}`);
+		}
+	}
 }
 
-export type ProjectsFeatureAction = SelectOneProjectAction;
+export type ProjectsFeatureAction = SetCurrentProjectAction;

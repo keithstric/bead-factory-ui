@@ -1,0 +1,27 @@
+<div class="pattern-container">
+	<div *ngFor="let row of rows; let rowIdx = index;" class="pattern-row d-flex flex-row">
+		<span class="row-number">{{rowIdx + 1}}</span>
+		<div
+			*ngFor="let bead of row; let colIdx = index"
+			class="pattern-column-container d-flex flex-column align-items-center">
+			<span class="column-number"
+						*ngIf="rowIdx === 0">{{colIdx + 1}}
+			</span>
+			<div
+				class="pattern-column"
+				[title]="bead.x + ',' + bead.y"
+				[style.background-color]="bead.color">
+				<app-context-menu
+					[dropdownItems]="bead.contextMenuData"
+					[isVisible]="bead.contextMenuVisible"
+					(menuItemClicked)="contextMenuItemClick($event)">
+				</app-context-menu>
+				<input type="color"
+					 [value]="bead.color || '#ffffff'"
+					 (contextmenu)="showContextMenu($event, bead); false"
+					 (input)="updateColor($event, bead)" />
+			</div>
+		</div>
+	</div>
+</div>
+

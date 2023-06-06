@@ -1,0 +1,65 @@
+.pattern-container {
+	width: 100%;
+	overflow: auto;
+	padding-bottom: 25px;
+
+	.pattern-row {
+		align-items: center;
+
+		.row-number {
+			margin-right: 3px;
+		}
+
+		/*
+		 * Fixes center of first row not being the center of the bead because the
+		 * first row includes the column number
+		 */
+		&:first-of-type {
+			.row-number {
+				margin-top: 1rem;
+			}
+		}
+
+		.pattern-column-container {
+
+			.pattern-column {
+				width: 25px;
+				height: 25px;
+				border: 1px solid #afafaf;
+				position: relative;
+
+				&:nth-child(even) {
+					border-right: none;
+				}
+
+				&:nth-child(odd) {
+					border-top: none;
+					border-right: none;
+				}
+
+				input {
+					position: absolute;
+					top: 0;
+					left: 0;
+					border: none;
+					opacity: 0;
+					padding: 0;
+					width: 25px;
+					height: 25px;
+
+					&:hover {
+						cursor: pointer;
+					}
+				}
+			}
+
+			/**
+			 * Adds the right hand border on the last column if it's an even number
+			 */
+			&:last-child {
+				border-right: 1px solid #afafaf;
+			}
+		}
+
+	}
+}

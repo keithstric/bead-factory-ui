@@ -36,8 +36,4 @@ export const ApiRouteToClass = {
 	'/api/person': User
 };
 
-export const CachableRoutePatterns = {
-	'/api/person/:id': true,
-	'https://pokeapi.co/api/v2/pokemon/:id/': true,
-	'https://pokeapi.co/api/v2/pokemon': false,
-};
+export const CachableRoutePatterns = {};

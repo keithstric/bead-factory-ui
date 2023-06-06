@@ -58,3 +58,8 @@ button {
 		@include elevation(3);
 	}
 }
+
+.spacer {
+	display: flex;
+	flex: 1 1 auto;
+}
