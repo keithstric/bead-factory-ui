@@ -1,0 +1,24 @@
+<div class="project-container">
+	<ng-container *ngTemplateOutlet="shownPhase"></ng-container>
+</div>
+
+<ng-template #projectForm>
+	<div class="project-form-container d-flex flex-column">
+		<app-dynamic-form
+			[formGroupDefinition]="fgDefinition"
+			(formGroupInitialized)="onFormInit($event)"
+			formStatePath="project">
+		</app-dynamic-form>
+		<button class="btn primary" (click)="saveProject()">Create Project</button>
+	</div>
+</ng-template>
+
+<ng-template #editProject>
+	<div class="pattern-outer-container">
+		<app-bead-pattern
+			[rowCount]="project?.widthInBeads || 0"
+			[lengthInInches]="project?.lengthInInches"
+			[beads]="project?.beads || []">
+		</app-bead-pattern>
+	</div>
+</ng-template>
