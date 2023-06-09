@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {LayoutModule} from '@layout/layout.module';
 import {ProjectsRoutingModule} from '@modules/projects/projects-routing.module';
 import {ProjectsEffects} from '@modules/projects/store/projects/projects.effects';
 import {ProjectsFeatureReducersMap} from '@modules/projects/store/projects_feature.reducers';

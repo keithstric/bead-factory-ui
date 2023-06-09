@@ -63,3 +63,13 @@ button {
 	display: flex;
 	flex: 1 1 auto;
 }
+
+.component-header {
+	color: white;
+
+	a:hover {
+		text-decoration: none;
+		cursor: pointer;
+		color: white;
+	}
+}

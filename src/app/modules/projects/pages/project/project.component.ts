@@ -1,7 +1,15 @@
-import {AfterViewInit, Component, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {
+	AfterContentChecked,
+	Component,
+	OnDestroy,
+	OnInit,
+	TemplateRef,
+	ViewChild
+} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {selectForms} from '@core/root-store/forms/forms.selectors';
+import {LayoutService} from '@layout/services/layout/layout.service';
 import {ProjectType, RawProject} from '@modules/projects/interfaces/projects.interface';
 import {CreateProjectAction, GetProjectsAction, SetCurrentProjectAction} from '@modules/projects/store';
 import {selectAllProjects, selectLoaded, selectProjectById} from '@modules/projects/store/projects/projects.selectors';
@@ -15,7 +23,7 @@ import {take} from 'rxjs/operators';
 	templateUrl: './project.component.html',
 	styleUrls: ['./project.component.scss']
 })
-export class ProjectComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ProjectComponent implements OnInit, OnDestroy, AfterContentChecked {
 	shownPhase: TemplateRef<any>;
 	formGroup: FormGroup;
 	projectIdSubj: BehaviorSubject<string> = new BehaviorSubject<string>(undefined);
@@ -28,7 +36,8 @@ export class ProjectComponent implements OnInit, AfterViewInit, OnDestroy {
 	constructor(
 		private _router: Router,
 		private _activeRoute: ActivatedRoute,
-		private store: Store
+		private store: Store,
+		private _layout: LayoutService
 	) {}
 
 	get fgDefinition(): FormGroupDefinition {
@@ -79,6 +88,19 @@ export class ProjectComponent implements OnInit, AfterViewInit, OnDestroy {
 		this._listenToStore();
 	}
 
+	ngAfterContentChecked() {
+		// Determine the view which is rendered
+		if (this._router.url.endsWith('/new')) {
+			this.shownPhase = this.projFormTemplate;
+		}else{
+			this.shownPhase = this.editProjTemplate;
+		}
+	}
+
+	ngOnDestroy() {
+		this.subscriptions.unsubscribe();
+	}
+
 	/**
 	 * Get the projectId from the route
 	 * @private
@@ -127,17 +149,6 @@ export class ProjectComponent implements OnInit, AfterViewInit, OnDestroy {
 			})
 		);
 	}
-
-	ngAfterViewInit(): void {
-		// Determine the view which is rendered
-		if (this._router.url.endsWith('/new')) {
-			this.shownPhase = this.projFormTemplate;
-		}else{
-			this.shownPhase = this.editProjTemplate;
-		}
-	}
-
-	ngOnDestroy() {}
 
 	/**
 	 * Get the formGroup from the dynamic form

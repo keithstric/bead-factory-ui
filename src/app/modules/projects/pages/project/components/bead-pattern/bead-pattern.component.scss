@@ -1,65 +1,99 @@
+@import '/src/scss/variables';
+
 .pattern-container {
-	width: 100%;
-	overflow: auto;
-	padding-bottom: 25px;
+	height: 100%;
 
-	.pattern-row {
-		align-items: center;
+	.pattern-action-bar {
+		min-height: 32px;
+		border-bottom: 1px solid #afafaf;
+		margin-bottom: 1rem;
+		padding: 5px 0;
 
-		.row-number {
-			margin-right: 3px;
-		}
+		.add-btn {
+			height: 32px;
+			width: 32px;
+			display: flex;
+			padding: 0;
+			align-items: center;
+			justify-content: center;
 
-		/*
-		 * Fixes center of first row not being the center of the bead because the
-		 * first row includes the column number
-		 */
-		&:first-of-type {
-			.row-number {
-				margin-top: 1rem;
+			i {
+				font-size: 1rem;
 			}
 		}
+	}
 
-		.pattern-column-container {
+	.design-container {
+		overflow: auto;
+		padding: 0 25px 25px 0;
 
-			.pattern-column {
-				width: 25px;
-				height: 25px;
-				border: 1px solid #afafaf;
-				position: relative;
+		.pattern-row {
+			align-items: center;
 
-				&:nth-child(even) {
-					border-right: none;
+			.row-number {
+				min-width: 25px;
+				text-align: right;
+				margin-right: 4px;
+			}
+
+			/*
+			 * Fixes center of first row not being the center of the bead because the
+			 * first row includes the column number
+			 */
+			&:first-of-type {
+				.row-number {
+					margin-top: 1rem;
 				}
+			}
 
-				&:nth-child(odd) {
-					border-top: none;
-					border-right: none;
-				}
+			.pattern-column-container {
 
-				input {
-					position: absolute;
-					top: 0;
-					left: 0;
-					border: none;
-					opacity: 0;
-					padding: 0;
+				.pattern-column {
 					width: 25px;
 					height: 25px;
+					border: 1px solid #afafaf;
+					position: relative;
 
-					&:hover {
-						cursor: pointer;
+					&:nth-child(even) {
+						border-right: none;
 					}
+
+					&:nth-child(odd) {
+						border-top: none;
+						border-right: none;
+					}
+
+					input {
+						position: absolute;
+						top: 0;
+						left: 0;
+						border: none;
+						opacity: 0;
+						padding: 0;
+						width: 25px;
+						height: 25px;
+
+						&:hover {
+							cursor: pointer;
+						}
+					}
+				}
+
+				/*
+				 * Adds the right hand border on the last column if it's an even number
+				 */
+				&:last-child {
+					border-right: 1px solid #afafaf;
 				}
 			}
 
-			/**
-			 * Adds the right hand border on the last column if it's an even number
-			 */
-			&:last-child {
-				border-right: 1px solid #afafaf;
-			}
 		}
+	}
+}
 
+ul.dropdown-menu li {
+
+	&:hover {
+		cursor: pointer;
 	}
 }
